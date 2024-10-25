@@ -3,10 +3,10 @@ import csv
 import fileinput
 import pandas as pd
 from pathlib import Path
-print("/n"*5)
+print("\n"*5)
 undscr = "->"*30
 print(undscr)
-print("/n"+"WARNING: Previous files will be overwritten!  Save them in a "+"/n"+"different location than the current file, or rename them to "+"/n")
+print("\n"+"WARNING: Previous files will be overwritten!  Save them in a "+"\n"+"different location than the current file, or rename them to "+"\n")
 print(undscr)
 
 
@@ -35,7 +35,7 @@ for lines in fileinput.FileInput(ct_file, inplace=1):
 
 with open(ct_file, 'r') as infile2, open(userpath+'\\'+fname+'_base_file.csv', 'w') as csv_file:
     reader = csv.reader(infile2)
-    writer = csv.writer(csv_file, delimiter = ',', lineterminator = '/n')
+    writer = csv.writer(csv_file, delimiter = ',', lineterminator = '\n')
     writer.writerow(["baseno","base","bs_bf", "bs_aft", "bs_bind", "base2"])
     for row in reader:
         if "ENERGY" not in row:
