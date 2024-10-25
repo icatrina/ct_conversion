@@ -15,13 +15,13 @@ print(undscr)
 filein = input("Enter the ct file path and name: ")
 userpath = os.path.dirname(filein)
 fname=Path(filein).stem
-with open(filein,'r') as firstfile, open(userpath+'/'+fname+'_new_input.txt','w') as ct_file:
+with open(filein,'r') as firstfile, open(userpath+'\\'+fname+'_new_input.txt','w') as ct_file:
     # read content from first file
     for line in firstfile:
              # append content to second file
              ct_file.write(line)
 
-ct_file = userpath+'/'+fname+'_new_input.txt'
+ct_file = userpath+'\\'+fname+'_new_input.txt'
 strct = 0
 with open(ct_file, 'r') as infile:
     for row in infile:
@@ -33,7 +33,7 @@ for lines in fileinput.FileInput(ct_file, inplace=1):
    if lines == '': continue
    print (lines2)
 
-with open(ct_file, 'r') as infile2, open(userpath+'/'+fname+'_base_file.csv', 'w') as csv_file:
+with open(ct_file, 'r') as infile2, open(userpath+'\\'+fname+'_base_file.csv', 'w') as csv_file:
     reader = csv.reader(infile2)
     writer = csv.writer(csv_file, delimiter = ',', lineterminator = '/n')
     writer.writerow(["baseno","base","bs_bf", "bs_aft", "bs_bind", "base2"])
@@ -42,10 +42,10 @@ with open(ct_file, 'r') as infile2, open(userpath+'/'+fname+'_base_file.csv', 'w
             writer.writerow(row)
             csv_file.flush() # whenever you want
 
-mb_pick = pd.read_csv(userpath+'/'+fname+'_base_file.csv', sep=',', usecols=[0,1,4], dtype=object)
-mb_pick.to_csv(userpath+'/'+fname+'_three_col.csv', index=False)
+mb_pick = pd.read_csv(userpath+'\\'+fname+'_base_file.csv', sep=',', usecols=[0,1,4], dtype=object)
+mb_pick.to_csv(userpath+'\\'+fname+'_three_col.csv', index=False)
 
-with open (userpath+'/'+fname+'_three_col.csv', 'r') as infile3, open(userpath+'/'+fname+'_sscount1.csv', 'w') as outfile3:
+with open (userpath+'\\'+fname+'_three_col.csv', 'r') as infile3, open(userpath+'\\'+fname+'_sscount1.csv', 'w') as outfile3:
     cls = [[],[],[]]
     reader = csv.reader(infile3)
     for row in reader:
@@ -62,14 +62,14 @@ with open (userpath+'/'+fname+'_three_col.csv', 'r') as infile3, open(userpath+'
     for row in rows:
         writer.writerow(row)
 
-df = pd.read_csv(userpath+'/'+fname+'_sscount1.csv')
+df = pd.read_csv(userpath+'\\'+fname+'_sscount1.csv')
 
 df_grouped = df.groupby(['baseno', 'base'], as_index = False).sum()
 
 a = pd.DataFrame(df_grouped)
-a.to_csv(userpath+'/'+fname+'_base_grouped.csv', index=False)
+a.to_csv(userpath+'\\'+fname+'_base_grouped.csv', index=False)
 
-with open (userpath+'/'+fname+'_base_grouped.csv', 'r') as infile4, open(userpath+'/'+fname+'_sscount.txt', 'w') as outfile4:
+with open (userpath+'\\'+fname+'_base_grouped.csv', 'r') as infile4, open(userpath+'\\'+fname+'_sscount.txt', 'w') as outfile4:
 
     cls = [[],[],[]]
     reader = csv.reader(infile4)
@@ -89,8 +89,8 @@ with open (userpath+'/'+fname+'_base_grouped.csv', 'r') as infile4, open(userpat
     for row in rows:
         writer.writerow(row)
 
-os.remove(userpath+'/'+fname+'_new_input.txt')
-os.remove(userpath+'/'+fname+'_base_file.csv')
-os.remove(userpath+'/'+fname+'_three_col.csv')
-os.remove(userpath+'/'+fname+'_sscount1.csv')
-os.remove(userpath+'/'+fname+'_base_grouped.csv')
+os.remove(userpath+'\\'+fname+'_new_input.txt')
+os.remove(userpath+'\\'+fname+'_base_file.csv')
+os.remove(userpath+'\\'+fname+'_three_col.csv')
+os.remove(userpath+'\\'+fname+'_sscount1.csv')
+os.remove(userpath+'\\'+fname+'_base_grouped.csv')
